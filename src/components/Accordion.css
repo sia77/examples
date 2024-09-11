@@ -1,0 +1,36 @@
+.accordionTitle{
+    text-align: left;
+    text-transform: capitalize;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+  }
+
+.accordionContent{
+    padding:1.2rem;
+    border:1px solid #676767;
+}
+
+  @keyframes accordion {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(90deg);}
+  }
+
+  @keyframes accordionBack {
+    from {transform: rotate(90deg);}
+    to {transform: rotate(0deg);}
+  }
+
+  .arrowDown{
+    animation-name: accordion;
+    animation-duration: .4s;
+    transform: rotate(90deg);
+  }
+
+  .arrowForward{
+    animation-name: accordionBack;
+    animation-duration: .4s;
+    transform: rotate(0deg);
+  }
