@@ -4,8 +4,7 @@ import './Accordion.css'
 
 export default function Accordion({children, title="Example"}:any){
 
-    const [displayStatus, setDisplayStatus] = useState('none')
-
+    const [displayStatus, setDisplayStatus] = useState('none');
     
 
     function Toggle(e:any){
