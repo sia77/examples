@@ -47,7 +47,6 @@ export default tseslint.config({
     ...react.configs['jsx-runtime'].rules,
   },
 })
-
+```
 # Google Material Symbols guide
 - [Material Symbols guide](https://developers.google.com/fonts/docs/material_symbols)
-```
