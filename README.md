@@ -48,5 +48,5 @@ export default tseslint.config({
   },
 })
 
-# Material Symbols guide
-- (https://developers.google.com/fonts/docs/material_symbols)
+# Google Material Symbols guide
+- [Material Symbols guide](https://developers.google.com/fonts/docs/material_symbols)
