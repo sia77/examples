@@ -1,0 +1,17 @@
+
+.container > div{
+    display: flex;
+    height: 30px;
+}
+
+.container > div > div:first-child{
+    width:92px;
+}
+
+.button-container{
+    margin-bottom: 20px;
+}
+
+.greeting-container > .greeting.message {
+    width:100%;
+}

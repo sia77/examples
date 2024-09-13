@@ -21,4 +21,12 @@ body {
   min-height: 100vh;
 }
 
+.error{
+  color:#e61414;
+}
+
+.container {
+  scrollbar-gutter: stable;
+}
+
 
