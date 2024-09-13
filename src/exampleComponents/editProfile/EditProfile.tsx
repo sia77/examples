@@ -8,14 +8,13 @@ export default function EditProfile(){
 
     const [ firstName, setFirstName ] = useState('John');
     const [ lastName, setLastName ] = useState('Smith');
-    const [ buttonLabel, setButtonLabel ] = useState('Edit Profile');
-    const [ isSaved, setIsSaved ] = useState(true);
+    const [ editMode, setEditMode ] = useState(true);
 
-    function toggle(){
-        const isEditMode = buttonLabel === "Edit Profile";
-        setIsSaved(!isEditMode);
-        setButtonLabel(isEditMode ? "Save Profile" : "Edit Profile");
+    function toggle(e:any){
+        e.preventDefault();
+        setEditMode(!editMode);
     }
+    
 
     function handleName(e:any){
         e.target.name === "firstName" ? setFirstName(e.target.value) : setLastName(e.target.value)
@@ -24,45 +23,44 @@ export default function EditProfile(){
     return (
 
         <>
-            <div className="container">
-                <div>
-                    <div>First Name:</div>
+            <form onSubmit={toggle}>
+                <div className="container">
                     <div>
-                        {
-                            !isSaved ?
-                            <input
-                            name="firstName" 
-                            value={ firstName } 
-                            onChange={handleName}/> :
-                            firstName
-                        }
-                        
+                        <div>First Name:</div>
+                        <div>
+                            {
+                                editMode ?
+                                <input
+                                name="firstName" 
+                                value={ firstName } 
+                                onChange={handleName}/> :
+                                firstName
+                            }                        
+                        </div>
+                    </div>
+                    <div>
+                        <div>Last Name:</div>
+                        <div>
+                            {
+                                editMode ? 
+                                <input 
+                                name="lastName"
+                                value={ lastName }
+                                onChange={handleName} /> :
+                                lastName 
+                            }                        
+                        </div>
+                    </div>
+                    <div className='button-container'>
+                        <BasicButton>
+                            {editMode? 'Save':'Edit'} Profile
+                        </BasicButton>
+                    </div>
+                    <div className="greeting-container">
+                        <div className='greeting message'> Hello, { firstName } { lastName } </div>
                     </div>
                 </div>
-                <div>
-                    <div>Last Name:</div>
-                    <div>
-                        {!isSaved? <input 
-                            name="lastName"
-                            value={ lastName }
-                            onChange={handleName} /> :
-                            lastName 
-                        }
-                        
-                    </div>
-                </div>
-                <div className='button-container'>
-                    <BasicButton
-                        onClick={toggle}
-                    >{buttonLabel}</BasicButton>
-                </div>
-                <div className="greeting-container">
-                    <div className='greeting message'> Hello, { firstName } { lastName } </div>
-                </div>
-                
-                
-            </div>
-
+            </form>
         </>
     )
 }

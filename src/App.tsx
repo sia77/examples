@@ -1,5 +1,5 @@
 import Accordion from './components/accordion/Accordion';
-import CityQuiz from './exampleComponents/CityQuiz';
+import CityQuiz from './exampleComponents/cityQuiz/CityQuiz';
 import EditProfile from './exampleComponents/editProfile/EditProfile'
 import './App.css'
 

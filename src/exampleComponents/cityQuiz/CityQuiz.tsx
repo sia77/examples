@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BasicButton } from './../components/buttons/Buttons';
+import { BasicButton } from '../../components/buttons/Buttons';
 
 export default function CityQuiz(){
 
