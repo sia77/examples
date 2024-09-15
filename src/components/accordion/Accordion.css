@@ -11,6 +11,7 @@
 .accordionContent{
     padding:1.2rem;
     border:1px solid #676767;
+    margin-bottom: 10px;
 }
 
   @keyframes accordion {
