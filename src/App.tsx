@@ -1,8 +1,9 @@
 import Accordion from './components/accordion/Accordion';
 import CityQuiz from './exampleComponents/cityQuiz/CityQuiz';
 import EditProfile from './exampleComponents/editProfile/EditProfile';
-import MovingDot from './exampleComponents/movingDot/MovingDot'
-import Menu from './exampleComponents/menu/Menu'
+import MovingDot from './exampleComponents/movingDot/MovingDot';
+import Menu from './exampleComponents/menu/Menu';
+import ChatApp from './exampleComponents/chat/ChatApp'
 import './App.css'
 
 function App() {
@@ -22,6 +23,10 @@ function App() {
       <Accordion title="What's Your Snak">
         <Menu />
       </Accordion>
+      <Accordion title="Reducers - Chat App">
+        <ChatApp />
+      </Accordion>
+      
     </>
   )
 }
