@@ -1,0 +1,12 @@
+ul {
+    margin-top:20px;
+}
+li.reducer-context{
+    display: flex;
+}
+
+li.reducer-context label{
+    display: grid;
+    width: 70%;
+    grid-template-columns: 1fr 2fr 2fr 2fr;
+}

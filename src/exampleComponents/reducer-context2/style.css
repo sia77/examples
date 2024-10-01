@@ -1,0 +1,8 @@
+.tasks-list{
+    max-width: 300px;
+}
+
+.task-row{
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+}

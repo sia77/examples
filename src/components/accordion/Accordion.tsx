@@ -9,7 +9,6 @@ export default function Accordion({children, title="Example"}:any){
 
     function Toggle(e:any){
         setDisplayStatus(displayStatus === 'none' ? 'block': 'none');
-        console.log(" displayStatus: ",  displayStatus);
     }
 
 

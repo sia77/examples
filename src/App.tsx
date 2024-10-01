@@ -3,8 +3,13 @@ import CityQuiz from './exampleComponents/cityQuiz/CityQuiz';
 import EditProfile from './exampleComponents/editProfile/EditProfile';
 import MovingDot from './exampleComponents/movingDot/MovingDot';
 import Menu from './exampleComponents/menu/Menu';
-import ChatApp from './exampleComponents/chat/ChatApp'
+import ChatApp from './exampleComponents/chat/ChatApp';
+import SectionApp from './exampleComponents/postings/SectionApp'
 import './App.css'
+import ReplaceProp from './exampleComponents/replaceProp/ReplaceProp';
+import ReducerContext from './exampleComponents/reducer-context/ReducerContext';
+import ReducerContextApp from './exampleComponents/reducer-context2/ReducerContextApp';
+import TaskManagerApp from './exampleComponents/taskManager/TaskManagerApp';
 
 function App() {
   
@@ -26,6 +31,28 @@ function App() {
       <Accordion title="Reducers - Chat App">
         <ChatApp />
       </Accordion>
+      <Accordion title="Reducers - Task Manager App">
+        <TaskManagerApp />
+      </Accordion>
+      <Accordion title="Section/Headings - Context">
+        <SectionApp />
+      </Accordion>
+      <Accordion title="More Context">
+        <ReplaceProp />
+      </Accordion>
+      {/* <Accordion title="Reducer + Context">
+        <ReducerContext />
+      </Accordion>
+
+      <Accordion title="Reducer + Context">
+        <ReducerContextApp />
+      </Accordion> */}
+
+      
+
+      
+
+      
       
     </>
   )
