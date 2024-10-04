@@ -1,8 +1,11 @@
 import { useState } from "react"
-import { State } from "./interfaces/TasksTypes";
+import { State, TaskType } from "./interfaces/TasksTypes";
 import { useReducer } from "react";
 import { TaskMangerReducer } from "./reducers/TaskManagerReducer";
 import './style.css';
+import AddTask from "./components/AddTask";
+import UndoRedoOp from "./components/UndoRedoOp";
+import TaskList from "./components/TaskList";
 
 
 
@@ -10,7 +13,7 @@ export default function TaskManagerApp(){
 
     const [tasksState, dispatch] = useReducer(TaskMangerReducer, initialSate);
     const [text, setText] = useState('');
-    const [editMode, setEditMode] = useState(false);
+    
  
     function handleAdd(){
         setText('');
@@ -37,14 +40,14 @@ export default function TaskManagerApp(){
         })
     }
 
-    function toggleEidtSave(id:number){
-        setEditMode(!editMode);
+    // function toggleEidtSave(id:number){
+    //     setEditMode(!editMode);
 
-        editMode && dispatch({
-            type:'SAVE_TASK',
-            id:id
-        })
-    }
+    //     // editMode && dispatch({
+    //     //     type:'SAVE_TASK',
+    //     //     id:id
+    //     // })
+    // }
 
     function handleCheckBoxToggle(id:number){
         dispatch({
@@ -63,65 +66,29 @@ export default function TaskManagerApp(){
         dispatch({
             type:'REDO'
         })
-    }    
-
+    } 
+    
     return(
         <>
             <h1>Task Manager</h1>
             <div className="container">
-                <input 
-                    type = "text"
-                    placeholder="Type something..."
-                    value = {text} 
-                    onChange = {(e) => setText(e.target.value)}
-                    />
-                <button
-                    onClick={handleAdd}
-                    disabled={text.length === 0}
-                >Add</button>
-                <button
-                    onClick={handleUndo}
-                    disabled={tasksState.undoList.length === 0}
-                >Undo</button>
-                <button
-                    onClick={handleRedo}
-                    disabled={tasksState.redoList.length === 0}
-                >Redo</button>
+                <AddTask 
+                    text={text} 
+                    setText={setText} 
+                    handleAdd={handleAdd} />
+                <UndoRedoOp 
+                    handleUndo = {handleUndo}
+                    handleRedo = {handleRedo}
+                    tasksState = {tasksState}
+                />
             </div>
-            <div className="task-list">
-                {  
-                    tasksState.tasks.map(
-                        task => 
-                            <div className="task-manager-list-item" key={task.id}>
-                                <input 
-                                    type='checkbox'
-                                    checked={task.done}
-                                    onChange={()=>handleCheckBoxToggle(task.id)}
-                                    />
-                                <div className="edit-save">
-                                    { editMode ? 
-                                        <div>
-                                            <input
-                                                value={ task.text }
-                                                onChange={(e)=> handleEdit(task.id,e)}
-                                                type="text" />
-                                        </div>:
-                                        <div>{task.text}</div>             
-                                    }           
-                                </div>
-                                <div>
-                                    <button
-                                        onClick={(e) => toggleEidtSave(task.id)}
-                                    >{ editMode ? 'Save' : 'Edit' }</button>
-                                </div>                                
-                                <div>
-                                    <button
-                                        onClick={() => handleDelete(task.id)}
-                                    >Delete</button>
-                                </div>
-                            </div>) 
-                }
-            </div>
+            <TaskList
+                tasksState = {tasksState}
+                handleCheckBoxToggle = {handleCheckBoxToggle}
+                handleDelete = {handleDelete}
+                handleEdit = {handleEdit}
+            />
+
             <div>
                 <h6>Undo list</h6>
                 {

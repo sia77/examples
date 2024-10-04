@@ -39,10 +39,7 @@ export function TaskMangerReducer( state:State, action:TasksAction ):State{
 
         } 
         case 'EDIT_TASK':{
-            //console.log("action.text: ", action.text); 
-           //console.log("State: ", state) ;
             const currentItem = state.tasks.find(el => el.id === action.id)
-            //console.log("currentItem:", currentItem)
             const modifiedList = tasks.map( task => task.id === action.id ? { ...task, text:action.text } : task );
             if(currentItem)
                 return {
