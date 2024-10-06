@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { TaskType } from "../interfaces/types";
+ 
 
 
-
-function Task({task, handleEditTask}:any){
+function Task({task, handleEditTask, style}:any){
     const [editMode, setEditMode] = useState(false);
     return (
         <>
-            <div className="task-manager-list-item" key = {task.id}>
+            <div className={`${style.task_manager_list_item}`} key = {task.id}>
                 {
                     !editMode ? 
                         <div>{task.text}</div> : 
@@ -32,13 +32,13 @@ function Task({task, handleEditTask}:any){
 }
 
 
-export default function TaskList({tasksState, handleEditTask}:any){
+export default function TaskList({tasksState, handleEditTask, style}:any){
 
     return (
         <> 
             {
                 tasksState.map((task:TaskType) =>                
-                    <Task key = {task.id} task={task} handleEditTask={handleEditTask} />
+                    <Task key = {task.id} task={task} handleEditTask={handleEditTask} style = {style} />
                 )
             }
         </>

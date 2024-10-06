@@ -1,4 +1,4 @@
-.task-manager-list-item{
+.task_manager_list_item{
     display: grid;
     grid-template-columns: 5% 25% 7% 7%;
 }

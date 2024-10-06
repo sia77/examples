@@ -1,8 +1,8 @@
 import { useReducer, useState } from "react";
 import AddTask from "./components/AddTask";
-import './style.css';
+import style from './style.module.css';
 import { TaskReducer } from "./reducers/TaskReducer";
-import { Task} from "./interfaces/types";
+import { TaskType} from "./interfaces/types";
 import TaskList from "./components/TaskList";
 
 export default function TaskManagerApp2(){
@@ -19,7 +19,7 @@ export default function TaskManagerApp2(){
         })
     }
 
-    function handleEditTask(task:Task){
+    function handleEditTask(task:TaskType){
         dispatch({
             type:'EDIT_TASK',
             task
@@ -34,12 +34,13 @@ export default function TaskManagerApp2(){
                 setText = {setText} />
             <TaskList 
                 tasksState = {tasksState}
-                handleEditTask = {handleEditTask} />
+                handleEditTask = {handleEditTask}
+                style = {style} />
         </>
     )
 }
 
-const taskInitialState: Task[] = [
+const taskInitialState: TaskType[] = [
     {id:0, text:'Get the project done', done:false},
     {id:1, text:'Buy an apple.', done:false}
 ];

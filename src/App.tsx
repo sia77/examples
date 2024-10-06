@@ -33,9 +33,9 @@ function App() {
       <Accordion title="Reducers - Chat App">
         <ChatApp />
       </Accordion> */}
-      <Accordion title="Online example - Task Manager App">
+      {/* <Accordion title="Online example - Task Manager App">
         <OnlineExampleApp />
-      </Accordion>
+      </Accordion> */}
       <Accordion title="Complex Reducer - Task Manager App">
         <TaskManagerApp />
       </Accordion>

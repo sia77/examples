@@ -35,7 +35,7 @@ export default function TaskList({tasksState, handleCheckBoxToggle, handleDelete
         {  
             tasksState.tasks.map(
                 (                task: { id: Key | null | undefined; done: boolean | undefined; }) => 
-                    <div className="task-manager-list-item" key={task.id}>
+                    <div className="task_manager_list_item" key={task.id}>
                         <input 
                             type='checkbox'
                             checked = {task.done}
