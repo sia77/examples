@@ -1,33 +1,34 @@
 import { Key, useState } from "react";
 
+function Task({task, handleEdit}:any){
+    const [editMode, setEditMode] = useState(false);
+
+    return(
+        <>
+            <div className="edit-save">
+                { editMode ? 
+                    <div>
+                        <input
+                            value={ task.text }
+                            onChange={(e)=> handleEdit(task.id,e)}
+                            type="text" />
+                    </div>:
+                    <div>{task.text}</div>             
+                }           
+            </div>
+            <div>
+                <button
+                    onClick={() => setEditMode(!editMode)}
+                >{ editMode ? 'Save' : 'Edit' }</button>
+            </div> 
+        </>
+    )
+}
+
 export default function TaskList({tasksState, handleCheckBoxToggle, handleDelete, handleEdit}:any){
 
 
-    function Task({task, handleEdit}:any){
-        const [editMode, setEditMode] = useState(false);
-        console.log("editMode: ", editMode);
 
-        return(
-            <>
-                <div className="edit-save">
-                    { editMode ? 
-                        <div>
-                            <input
-                                value={ task.text }
-                                onChange={(e)=> handleEdit(task.id,e)}
-                                type="text" />
-                        </div>:
-                        <div>{task.text}</div>             
-                    }           
-                </div>
-                <div>
-                    <button
-                        onClick={() => setEditMode(!editMode)}
-                    >{ editMode ? 'Save' : 'Edit' }</button>
-                </div> 
-            </>
-        )
-    }
 
     return (
         <div className="task-list">
