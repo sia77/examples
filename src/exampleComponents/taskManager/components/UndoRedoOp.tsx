@@ -1,13 +1,30 @@
-export default function UndoRedoOp({handleUndo, handleRedo, tasksState}:any){
+import { useContext } from "react"
+import { TasksContext } from "../contexts/TasksContext"
+
+export default function UndoRedoOp(){
+
+    const taskOp = useContext(TasksContext)
+
+    function handleUndo(){
+        taskOp?.dispatch({
+            type:'UNDO'
+        })
+    }
+
+    function handleRedo(){
+        taskOp?.dispatch({
+            type:'REDO'
+        })
+    } 
     return(
         <>
             <button
                 onClick={handleUndo}
-                disabled={tasksState.undoList.length === 0}
+                disabled={taskOp?.state.undoList.length === 0}
             >Undo</button>
             <button
                 onClick={handleRedo}
-                disabled={tasksState.redoList.length === 0}
+                disabled={taskOp?.state.redoList.length === 0}
             >Redo</button>
         </>
     )

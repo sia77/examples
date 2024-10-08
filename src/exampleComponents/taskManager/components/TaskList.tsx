@@ -1,7 +1,17 @@
-import { Key, useState } from "react";
+import { useContext, useState } from "react";
+import { TasksContext } from "../contexts/TasksContext";
 
-function Task({task, handleEdit}:any){
+function Task({task}:any){
     const [editMode, setEditMode] = useState(false);
+    const taskOp = useContext(TasksContext);
+
+    function handleEdit(id:number,e:any){
+        taskOp?.dispatch({
+            type:'EDIT_TASK',
+            id:id,
+            text:e.target.value
+        })
+    }
 
     return(
         <>
@@ -10,7 +20,9 @@ function Task({task, handleEdit}:any){
                     <div>
                         <input
                             value={ task.text }
-                            onChange={(e)=> handleEdit(task.id,e)}
+                            onChange={
+                                (e)=> handleEdit(task.id,e) 
+                            }
                             type="text" />
                     </div>:
                     <div>{task.text}</div>             
@@ -25,28 +37,46 @@ function Task({task, handleEdit}:any){
     )
 }
 
-export default function TaskList({tasksState, handleCheckBoxToggle, handleDelete, handleEdit}:any){
+export default function TaskList(){
+
+    const taskOp = useContext(TasksContext);
 
 
+    function handleDelete(id:number){
+        taskOp?.dispatch({
+            type:'DELETE_TASK',
+            id:id
+        })
+    }
 
+    function handleToggle(id:number){
+        taskOp?.dispatch({
+            type:'TOGGLE_CHECKED_TASK',
+            id:id
+        })
+    }
 
     return (
         <div className="task-list">
         {  
-            tasksState.tasks.map(
-                (                task: { id: Key | null | undefined; done: boolean | undefined; }) => 
+            taskOp?.state.tasks.map(
+                (                task: { id: number; done: boolean | undefined; }) => 
                     <div className="task_manager_list_item" key={task.id}>
                         <input 
                             type='checkbox'
                             checked = {task.done}
-                            onChange = {()=>handleCheckBoxToggle(task.id)}
+                            onChange = {
+                                () => handleToggle(task.id)                               
+                            }
                             />
                         <Task 
                             task = {task} 
-                            handleEdit =  {handleEdit} />
+                        />
                         <div>
                             <button
-                                onClick={() => handleDelete(task.id)}
+                                onClick = {
+                                    () => handleDelete(task.id)                                    
+                                }
                             >Delete</button>
                         </div>
                     </div>

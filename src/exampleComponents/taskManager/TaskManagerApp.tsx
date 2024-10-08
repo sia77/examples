@@ -1,93 +1,37 @@
-import { useState } from "react"
-import { State, TaskType } from "./interfaces/TasksTypes";
+import { State } from "./interfaces/TasksTypes";
 import { useReducer } from "react";
 import { TaskMangerReducer } from "./reducers/TaskManagerReducer";
 import './style.css';
 import AddTask from "./components/AddTask";
 import UndoRedoOp from "./components/UndoRedoOp";
 import TaskList from "./components/TaskList";
+import { TasksContext } from "./contexts/TasksContext"
+import { TaskContextType } from "./interfaces/Context";
 
 
 
 export default function TaskManagerApp(){
 
     const [tasksState, dispatch] = useReducer(TaskMangerReducer, initialSate);
-    const [text, setText] = useState('');
     
- 
-    function handleAdd(){
-        setText('');
-        dispatch(
-            {
-                type:'ADD_TASK',
-                text:text
-            }
-        )
+    
+    const contextObj: TaskContextType = {
+        state:tasksState, 
+        dispatch:dispatch
     }
-
-    function handleDelete(id:number){
-        dispatch({
-            type:'DELETE_TASK',
-            id:id
-        })
-    }
-
-    function handleEdit(id:number, e:any){        
-        dispatch({
-            type:'EDIT_TASK',
-            id:id,
-            text:e.target.value
-        })
-    }
-
-    // function toggleEidtSave(id:number){
-    //     setEditMode(!editMode);
-
-    //     // editMode && dispatch({
-    //     //     type:'SAVE_TASK',
-    //     //     id:id
-    //     // })
-    // }
-
-    function handleCheckBoxToggle(id:number){
-        dispatch({
-            type:'TOGGLE_CHECKED_TASK',
-            id:id
-        })
-    }
-
-    function handleUndo(){
-        dispatch({
-            type:'UNDO'
-        })
-    }
-
-    function handleRedo(){
-        dispatch({
-            type:'REDO'
-        })
-    } 
     
     return(
         <>
-            <h1>Task Manager</h1>
+        <h1>Task Manager</h1>
+        <TasksContext.Provider value={contextObj}>
             <div className="container">
-                <AddTask 
-                    text={text} 
-                    setText={setText} 
-                    handleAdd={handleAdd} />
-                <UndoRedoOp 
-                    handleUndo = {handleUndo}
-                    handleRedo = {handleRedo}
-                    tasksState = {tasksState}
-                />
+                <AddTask />
+                <UndoRedoOp />
             </div>
-            <TaskList
-                tasksState = {tasksState}
-                handleCheckBoxToggle = {handleCheckBoxToggle}
-                handleDelete = {handleDelete}
-                handleEdit = {handleEdit}
-            />
+            <TaskList />
+        </TasksContext.Provider>
+            
+
 
             <div>
                 <h6>Undo list</h6>

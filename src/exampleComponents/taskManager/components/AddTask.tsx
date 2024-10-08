@@ -1,5 +1,20 @@
+import { useContext, useState } from "react";
+import { TasksContext } from "../contexts/TasksContext";
 
-export default function AddTask({text, setText, handleAdd}:any){
+export default function AddTask(){
+
+    const tasks = useContext(TasksContext);
+    const [text, setText] = useState('');
+
+    function handleAdd(text:string){
+        setText('');
+        tasks?.dispatch(
+            {
+                type:'ADD_TASK',
+                text:text
+            }
+        )
+    }
 
     return (
         <>
@@ -10,10 +25,8 @@ export default function AddTask({text, setText, handleAdd}:any){
                 onChange = {(e) => setText(e.target.value)}
                 />
             <button
-                onClick={ () =>{
-                    
-                    handleAdd(text);
-                    
+                onClick={ () =>{                    
+                    handleAdd(text);                    
                 } }
                 disabled={ text.length === 0 }
             >Add</button>

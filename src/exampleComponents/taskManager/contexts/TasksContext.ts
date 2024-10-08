@@ -1,9 +1,6 @@
-import { createContext, Dispatch } from "react";
-import { TasksAction, State } from "../interfaces/TasksTypes";
+import { createContext} from "react";
+import { TaskContextType } from "../interfaces/Context";
 
-interface TaskContextType {
-    state:State,
-    dispatch:Dispatch<TasksAction>;
-}
+
 
 export const TasksContext = createContext<TaskContextType | undefined>(undefined);
