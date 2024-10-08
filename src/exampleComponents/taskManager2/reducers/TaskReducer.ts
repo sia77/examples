@@ -1,39 +1,23 @@
-import { ActionType, Task } from "../interfaces/types";
+import { ActionType, TaskType } from "../interfaces/Types";
 
 
-export function TaskReducer(taskState:Task[], action:ActionType){
+export function TaskReducer(taskState:TaskType[], action:ActionType){
 
-    console.log("state: ", taskState);
-    console.log("action: ", action);
+    // console.log("state: ", taskState);
+    // console.log("action: ", action);
 
     switch(action.type){
         case 'ADD_TASK':{
-            return [...taskState, {id:2, text:action.text, done:false}]
+          return [...taskState, {id:action.id, text:action.text, done:false}]
         }
         case 'EDIT_TASK':{
-            console.log("hello")
-            return taskState.map((t:any) => {
-                if (t.id === action.task.id) {
-                  return action.task;
-                } else {
-                  return t;
-                }
-              });
-            //return taskState.map( task => task.id === action.task.id ? action.task: task );
+          return taskState.map( task => task.id === action.task.id ? action.task: task );
         }
-        default :
-            throw new Error(`Unknown action type: ${action.type}`);
-    }    
-
+        case 'DELETE_TASK':{
+          return taskState.filter(task => task.id !== action.id)
+        }
+        // default :
+        //   throw new Error(`Unknown action type: ${action.type}`);
+    }
 }
 
-
-// case 'changed': {
-//     return tasks.map((t:any) => {
-//       if (t.id === action.task.id) {
-//         return action.task;
-//       } else {
-//         return t;
-//       }
-//     });
-//   }

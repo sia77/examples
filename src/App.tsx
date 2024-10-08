@@ -39,7 +39,7 @@ function App() {
       <Accordion title="Complex Reducer - Task Manager App">
         <TaskManagerApp />
       </Accordion>
-      <Accordion title="Simple Reducers - Task Manager App ">
+      <Accordion title="Simple Reducers - Task Manager App" description="This was an attempt to spread the state over at least two reducers. It was not a good idea, in case of this particular example. It defeats the purpose of a reducer.">
         <TaskManagerApp2 />
       </Accordion>
       {/* <Accordion title="Section/Headings - Context">

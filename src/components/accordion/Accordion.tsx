@@ -2,7 +2,7 @@ import { useState } from "react";
 import './Accordion.css'
 
 
-export default function Accordion({children, title="Example"}:any){
+export default function Accordion({children, title="Example", description}:any){
 
     const [displayStatus, setDisplayStatus] = useState('none');
     
@@ -19,8 +19,10 @@ export default function Accordion({children, title="Example"}:any){
                 chevron_right
                 </span>
                 <span>{title}</span>
+                
             </div>
             <div className="accordionContent" style={{display:displayStatus}}>
+            <div className="description">{description}</div>
                 {children}
             </div>
             

@@ -1,5 +1,11 @@
 .task_manager_list_item{
     display: grid;
-    grid-template-columns: 25% 7%;
+    grid-template-columns: 25% 7% 7%;
     /*grid-template-columns: 5% 25% 7% 7%;*/
+    height:25px;
+}
+
+.operations_button{
+    display: flex;
+    margin-bottom: 10px;
 }

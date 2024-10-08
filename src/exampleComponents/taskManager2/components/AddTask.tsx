@@ -3,10 +3,13 @@ export default function AddTask({handleAddTask, setText, text}:any){
         <>
             <input 
                 type="text"
+                value={text}
                 placeholder="Add task"
                 onChange = {(e) => setText(e.target.value)}
             />
-            <button onClick={() => handleAddTask(text)}>Add</button>
+            <button 
+                disabled = {text.length === 0}
+                onClick={() => handleAddTask(text)}>Add</button>
         </>
     )
 }

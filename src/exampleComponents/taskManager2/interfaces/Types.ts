@@ -6,7 +6,8 @@ export interface TaskType {
 
 export interface AddTaskAction {
     type:'ADD_TASK',
-    text:string
+    text:string,
+    id:number
 }
 
 export interface EditTaskAction {
@@ -21,3 +22,8 @@ export interface DeleteTaskAction {
 }
 
 export type ActionType = AddTaskAction | EditTaskAction | DeleteTaskAction;
+
+
+export interface IncreaseNextIdAction {
+    type:'INCREASE_ID'
+}
